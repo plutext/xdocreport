@@ -67,6 +67,5 @@
 	</build>
   <modules>
   	<module>xdocreport</module>
-  	<module>xdocreport-gae</module>
   </modules>
 </project>

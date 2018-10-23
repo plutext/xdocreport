@@ -29,7 +29,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Map;
 
-import fr.opensagres.xdocreport.converter.Options;
 import fr.opensagres.xdocreport.core.XDocReportException;
 import fr.opensagres.xdocreport.document.dispatcher.IXDocReportController;
 import fr.opensagres.xdocreport.document.dispatcher.IXDocReportLoader;
@@ -84,50 +83,50 @@ public class XDocReport
         return report;
     }
 
-    /**
-     * Generate report and convert it by using controller to load report.
-     * 
-     * @param reportId the report id used to retrieves from the cache the template report if it is already loaded.
-     * @param controller the controller used to load the template report if it is not already loaded.
-     * @param contextMap the context map values used to replace values of the template report.
-     * @param options the converter options.
-     * @param out the output stream where the report must be generated.
-     * @return an instance of the loaded template report.
-     * @return
-     * @throws IOException
-     * @throws XDocReportException
-     */
-    public static IXDocReport generateReportAndConvert( String reportId, IXDocReportController controller,
-                                                        Map<String, Object> contextMap, Options options,
-                                                        OutputStream out )
-        throws IOException, XDocReportException
-    {
-        return generateReportAndConvert( reportId, controller, contextMap, options, out, getDefaultRegistry() );
-    }
-
-    /**
-     * Generate report and convert it by using controller to load report by setting the registry.
-     * 
-     * @param reportId the report id used to retrieves from the cache the template report if it is already loaded.
-     * @param controller the controller used to load the template report if it is not already loaded.
-     * @param contextMap the context map values used to replace values of the template report.
-     * @param options the converter options.
-     * @param out the output stream where the report must be generated.
-     * @param registry
-     * @return an instance of the loaded template report.
-     * @return
-     * @throws IOException
-     * @throws XDocReportException
-     */
-    public static IXDocReport generateReportAndConvert( String reportId, IXDocReportController controller,
-                                                        Map<String, Object> contextMap, Options options,
-                                                        OutputStream out, XDocReportRegistry registry )
-        throws IOException, XDocReportException
-    {
-        IXDocReport report = getReport( reportId, controller, registry );
-        report.convert( contextMap, options, out );
-        return report;
-    }
+//    /**
+//     * Generate report and convert it by using controller to load report.
+//     * 
+//     * @param reportId the report id used to retrieves from the cache the template report if it is already loaded.
+//     * @param controller the controller used to load the template report if it is not already loaded.
+//     * @param contextMap the context map values used to replace values of the template report.
+//     * @param options the converter options.
+//     * @param out the output stream where the report must be generated.
+//     * @return an instance of the loaded template report.
+//     * @return
+//     * @throws IOException
+//     * @throws XDocReportException
+//     */
+//    public static IXDocReport generateReportAndConvert( String reportId, IXDocReportController controller,
+//                                                        Map<String, Object> contextMap, Options options,
+//                                                        OutputStream out )
+//        throws IOException, XDocReportException
+//    {
+//        return generateReportAndConvert( reportId, controller, contextMap, options, out, getDefaultRegistry() );
+//    }
+//
+//    /**
+//     * Generate report and convert it by using controller to load report by setting the registry.
+//     * 
+//     * @param reportId the report id used to retrieves from the cache the template report if it is already loaded.
+//     * @param controller the controller used to load the template report if it is not already loaded.
+//     * @param contextMap the context map values used to replace values of the template report.
+//     * @param options the converter options.
+//     * @param out the output stream where the report must be generated.
+//     * @param registry
+//     * @return an instance of the loaded template report.
+//     * @return
+//     * @throws IOException
+//     * @throws XDocReportException
+//     */
+//    public static IXDocReport generateReportAndConvert( String reportId, IXDocReportController controller,
+//                                                        Map<String, Object> contextMap, Options options,
+//                                                        OutputStream out, XDocReportRegistry registry )
+//        throws IOException, XDocReportException
+//    {
+//        IXDocReport report = getReport( reportId, controller, registry );
+//        report.convert( contextMap, options, out );
+//        return report;
+//    }
 
     /**
      * Get the template report from the cache registered with report id and load it if it is not found by using the
@@ -238,50 +237,50 @@ public class XDocReport
         return report;
     }
 
-    /**
-     * Generate report and convert it by using report loader to load report.
-     * 
-     * @param reportId the report id used to retrieves from the cache the template report if it is already loaded.
-     * @param reportLoader the report loader used to load the template report if it is not already loaded.
-     * @param contextMap the context map values used to replace values of the template report.
-     * @param options the converter options.
-     * @param out the output stream where the report must be generated.
-     * @return an instance of the loaded template report.
-     * @return
-     * @throws IOException
-     * @throws XDocReportException
-     */
-    public static IXDocReport generateReportAndConvert( String reportId, IXDocReportLoader reportLoader,
-                                                        Map<String, Object> contextMap, Options options,
-                                                        OutputStream out )
-        throws IOException, XDocReportException
-    {
-        return generateReportAndConvert( reportId, reportLoader, contextMap, options, out, getDefaultRegistry() );
-    }
-
-    /**
-     * Generate report and convert it by using report loader to load report by setting the registry.
-     * 
-     * @param reportId the report id used to retrieves from the cache the template report if it is already loaded.
-     * @param reportLoader the report loader used to load the template report if it is not already loaded.
-     * @param contextMap the context map values used to replace values of the template report.
-     * @param options the converter options.
-     * @param out the output stream where the report must be generated.
-     * @param registry
-     * @return an instance of the loaded template report.
-     * @return
-     * @throws IOException
-     * @throws XDocReportException
-     */
-    public static IXDocReport generateReportAndConvert( String reportId, IXDocReportLoader reportLoader,
-                                                        Map<String, Object> contextMap, Options options,
-                                                        OutputStream out, XDocReportRegistry registry )
-        throws IOException, XDocReportException
-    {
-        IXDocReport report = getReport( reportId, reportLoader, registry );
-        report.convert( contextMap, options, out );
-        return report;
-    }
+//    /**
+//     * Generate report and convert it by using report loader to load report.
+//     * 
+//     * @param reportId the report id used to retrieves from the cache the template report if it is already loaded.
+//     * @param reportLoader the report loader used to load the template report if it is not already loaded.
+//     * @param contextMap the context map values used to replace values of the template report.
+//     * @param options the converter options.
+//     * @param out the output stream where the report must be generated.
+//     * @return an instance of the loaded template report.
+//     * @return
+//     * @throws IOException
+//     * @throws XDocReportException
+//     */
+//    public static IXDocReport generateReportAndConvert( String reportId, IXDocReportLoader reportLoader,
+//                                                        Map<String, Object> contextMap, Options options,
+//                                                        OutputStream out )
+//        throws IOException, XDocReportException
+//    {
+//        return generateReportAndConvert( reportId, reportLoader, contextMap, options, out, getDefaultRegistry() );
+//    }
+//
+//    /**
+//     * Generate report and convert it by using report loader to load report by setting the registry.
+//     * 
+//     * @param reportId the report id used to retrieves from the cache the template report if it is already loaded.
+//     * @param reportLoader the report loader used to load the template report if it is not already loaded.
+//     * @param contextMap the context map values used to replace values of the template report.
+//     * @param options the converter options.
+//     * @param out the output stream where the report must be generated.
+//     * @param registry
+//     * @return an instance of the loaded template report.
+//     * @return
+//     * @throws IOException
+//     * @throws XDocReportException
+//     */
+//    public static IXDocReport generateReportAndConvert( String reportId, IXDocReportLoader reportLoader,
+//                                                        Map<String, Object> contextMap, Options options,
+//                                                        OutputStream out, XDocReportRegistry registry )
+//        throws IOException, XDocReportException
+//    {
+//        IXDocReport report = getReport( reportId, reportLoader, registry );
+//        report.convert( contextMap, options, out );
+//        return report;
+//    }
 
     /**
      * Get the template report from the cache registered with report id and load it if it is not found by using the
@@ -398,51 +397,51 @@ public class XDocReport
         return report;
     }
 
-    /**
-     * Generate report and convert it to another format (PDF, XHTML) without cache.
-     * 
-     * @param sourceStream the input stream of the template report (docx, odt, etc).
-     * @param templateEngineKind the template engine kind (Velocity, Freemarker).
-     * @param metadata the fields metadata or null if no need the fields metadata.
-     * @param contextMap the context map values used to replace values of the template report.
-     * @param options the converter options.
-     * @param out the output stream where the report must be generated.
-     * @return an instance of the loaded template report.
-     * @throws XDocReportException
-     * @throws IOException
-     */
-    public static IXDocReport generateReportAndConvert( InputStream sourceStream, String templateEngineKind,
-                                                        FieldsMetadata metadata, Map<String, Object> contextMap,
-                                                        Options options, OutputStream out )
-        throws IOException, XDocReportException
-    {
-        return generateReportAndConvert( sourceStream, templateEngineKind, metadata, contextMap, options, out,
-                                         getDefaultRegistry() );
-    }
-
-    /**
-     * Generate report and convert it to another format (PDF, XHTML) without cache by setting the registry.
-     * 
-     * @param sourceStream the input stream of the template report (docx, odt, etc).
-     * @param templateEngineKind the template engine kind (Velocity, Freemarker).
-     * @param metadata the fields metadata or null if no need the fields metadata.
-     * @param contextMap the context map values used to replace values of the template report.
-     * @param options the converter options.
-     * @param out the output stream where the report must be generated.
-     * @param registry
-     * @return an instance of the loaded template report.
-     * @throws XDocReportException
-     * @throws IOException
-     */
-    public static IXDocReport generateReportAndConvert( InputStream sourceStream, String templateEngineKind,
-                                                        FieldsMetadata metadata, Map<String, Object> contextMap,
-                                                        Options options, OutputStream out, XDocReportRegistry registry )
-        throws IOException, XDocReportException
-    {
-        IXDocReport report = loadReport( sourceStream, templateEngineKind, metadata, registry );
-        report.convert( contextMap, options, out );
-        return report;
-    }
+//    /**
+//     * Generate report and convert it to another format (PDF, XHTML) without cache.
+//     * 
+//     * @param sourceStream the input stream of the template report (docx, odt, etc).
+//     * @param templateEngineKind the template engine kind (Velocity, Freemarker).
+//     * @param metadata the fields metadata or null if no need the fields metadata.
+//     * @param contextMap the context map values used to replace values of the template report.
+//     * @param options the converter options.
+//     * @param out the output stream where the report must be generated.
+//     * @return an instance of the loaded template report.
+//     * @throws XDocReportException
+//     * @throws IOException
+//     */
+//    public static IXDocReport generateReportAndConvert( InputStream sourceStream, String templateEngineKind,
+//                                                        FieldsMetadata metadata, Map<String, Object> contextMap,
+//                                                        Options options, OutputStream out )
+//        throws IOException, XDocReportException
+//    {
+//        return generateReportAndConvert( sourceStream, templateEngineKind, metadata, contextMap, options, out,
+//                                         getDefaultRegistry() );
+//    }
+//
+//    /**
+//     * Generate report and convert it to another format (PDF, XHTML) without cache by setting the registry.
+//     * 
+//     * @param sourceStream the input stream of the template report (docx, odt, etc).
+//     * @param templateEngineKind the template engine kind (Velocity, Freemarker).
+//     * @param metadata the fields metadata or null if no need the fields metadata.
+//     * @param contextMap the context map values used to replace values of the template report.
+//     * @param options the converter options.
+//     * @param out the output stream where the report must be generated.
+//     * @param registry
+//     * @return an instance of the loaded template report.
+//     * @throws XDocReportException
+//     * @throws IOException
+//     */
+//    public static IXDocReport generateReportAndConvert( InputStream sourceStream, String templateEngineKind,
+//                                                        FieldsMetadata metadata, Map<String, Object> contextMap,
+//                                                        Options options, OutputStream out, XDocReportRegistry registry )
+//        throws IOException, XDocReportException
+//    {
+//        IXDocReport report = loadReport( sourceStream, templateEngineKind, metadata, registry );
+//        report.convert( contextMap, options, out );
+//        return report;
+//    }
 
     /**
      * Load the template report by using the given controller and cache it to the given registry

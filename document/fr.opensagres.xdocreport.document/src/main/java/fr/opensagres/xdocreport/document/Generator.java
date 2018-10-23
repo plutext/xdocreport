@@ -28,10 +28,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import fr.opensagres.xdocreport.converter.IConverter;
 import fr.opensagres.xdocreport.converter.MimeMapping;
-import fr.opensagres.xdocreport.converter.Options;
-import fr.opensagres.xdocreport.converter.XDocConverterException;
 import fr.opensagres.xdocreport.core.XDocReportException;
 import fr.opensagres.xdocreport.core.utils.StringUtils;
 import fr.opensagres.xdocreport.document.registry.TemplateEngineInitializerRegistry;
@@ -198,15 +195,15 @@ public abstract class Generator<In, Out>
             {
                 throw new XDocReportException( "Cannot get XDoc Report for the HTTP request" );
             }
-            Options options = getOptionsConverter( report, request );
-            if ( options == null )
-            {
+//            Options options = getOptionsConverter( report, request );
+//            if ( options == null )
+//            {
                 doProcessReport( report, entryName, request, response );
-            }
-            else
-            {
-                doProcessReportWithConverter( report, options, request, response );
-            }
+//            }
+//            else
+//            {
+//                doProcessReportWithConverter( report, options, request, response );
+//            }
             return true;
         }
         catch ( Exception e )
@@ -252,36 +249,36 @@ public abstract class Generator<In, Out>
         }
     }
 
-    /**
-     * Generate report with conversion.
-     * 
-     * @param report
-     * @param options
-     * @param request
-     * @param response
-     * @throws XDocReportException
-     * @throws IOException
-     * @throws XDocConverterException
-     */
-    private void doProcessReportWithConverter( IXDocReport report, Options options, In request, Out response )
-        throws XDocReportException, IOException, XDocConverterException
-    {
-        IContext context = null;
-        ITemplateEngine templateEngine = report.getTemplateEngine();
-        if ( templateEngine != null )
-        {
-            // 1) Prepare Java model context
-            context = report.createContext();
-            populateContext( context, report.getId(), request );
-        }
-
-        // 2) Get converter
-        IConverter converter = report.getConverter( options );
-        // 3) Prepare HTTP response content type
-        prepareHTTPResponse( report.getId(), converter.getMimeMapping(), request, response );
-        // 4) Generate report with conversion
-        report.convert( context, options, getOutputStream( response ) );
-    }
+//    /**
+//     * Generate report with conversion.
+//     * 
+//     * @param report
+//     * @param options
+//     * @param request
+//     * @param response
+//     * @throws XDocReportException
+//     * @throws IOException
+//     * @throws XDocConverterException
+//     */
+//    private void doProcessReportWithConverter( IXDocReport report, Options options, In request, Out response )
+//        throws XDocReportException, IOException, XDocConverterException
+//    {
+//        IContext context = null;
+//        ITemplateEngine templateEngine = report.getTemplateEngine();
+//        if ( templateEngine != null )
+//        {
+//            // 1) Prepare Java model context
+//            context = report.createContext();
+//            populateContext( context, report.getId(), request );
+//        }
+//
+//        // 2) Get converter
+//        IConverter converter = report.getConverter( options );
+//        // 3) Prepare HTTP response content type
+//        prepareHTTPResponse( report.getId(), converter.getMimeMapping(), request, response );
+//        // 4) Generate report with conversion
+//        report.convert( context, options, getOutputStream( response ) );
+//    }
 
     // ----------------- Get Report
 
@@ -387,32 +384,32 @@ public abstract class Generator<In, Out>
         return getParameter( request, CONVERTER_ID_HTTP_PARAM );
     }
 
-    protected Options getOptionsConverter( IXDocReport report, In request )
-    {
-        final String converterId = getConverterId( report, request );
-        if ( StringUtils.isEmpty( converterId ) )
-        {
-            return null;
-        }
-        Options options = null;
-        int index = converterId.lastIndexOf( '_' );
-        if ( index != -1 )
-        {
-            String to = converterId.substring( 0, index );
-            String via = converterId.substring( index + 1, converterId.length() );
-            options = Options.getTo( to ).via( via );
-        }
-        else
-        {
-            options = Options.getTo( converterId );
-        }
-        prepareOptions( options, report, converterId, request );
-        return options;
-    }
-
-    protected void prepareOptions( Options options, IXDocReport report, String converterId, In request )
-    {
-    }
+//    protected Options getOptionsConverter( IXDocReport report, In request )
+//    {
+//        final String converterId = getConverterId( report, request );
+//        if ( StringUtils.isEmpty( converterId ) )
+//        {
+//            return null;
+//        }
+//        Options options = null;
+//        int index = converterId.lastIndexOf( '_' );
+//        if ( index != -1 )
+//        {
+//            String to = converterId.substring( 0, index );
+//            String via = converterId.substring( index + 1, converterId.length() );
+//            options = Options.getTo( to ).via( via );
+//        }
+//        else
+//        {
+//            options = Options.getTo( converterId );
+//        }
+//        prepareOptions( options, report, converterId, request );
+//        return options;
+//    }
+//
+//    protected void prepareOptions( Options options, IXDocReport report, String converterId, In request )
+//    {
+//    }
 
     protected boolean isGenerateContentDisposition( String reportId, MimeMapping mimeMapping, In request )
     {

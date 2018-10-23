@@ -30,10 +30,7 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.Map;
 
-import fr.opensagres.xdocreport.converter.IConverter;
 import fr.opensagres.xdocreport.converter.MimeMapping;
-import fr.opensagres.xdocreport.converter.Options;
-import fr.opensagres.xdocreport.converter.XDocConverterException;
 import fr.opensagres.xdocreport.core.XDocReportException;
 import fr.opensagres.xdocreport.core.io.XDocArchive;
 import fr.opensagres.xdocreport.document.dump.DumperOptions;
@@ -257,40 +254,6 @@ public interface IXDocReport
     void process( Map<String, Object> contextMap, String entryName, OutputStream outputStream )
         throws XDocReportException, IOException;
 
-    /**
-     * Returns converter for the report and options.
-     * 
-     * @param options
-     * @return
-     */
-    IConverter getConverter( Options options )
-        throws XDocConverterException;
-
-    /**
-     * Generate report and Convert it to another format (PDF, XHTML, etc).
-     * 
-     * @param context
-     * @param options
-     * @param out
-     * @throws XDocReportException
-     * @throws XDocConverterException
-     * @throws IOException
-     */
-    void convert( IContext context, Options options, OutputStream out )
-        throws XDocReportException, XDocConverterException, IOException;
-
-    /**
-     * Generate report and Convert it to another format (PDF, XHTML, etc).
-     * 
-     * @param contextMap
-     * @param options
-     * @param out
-     * @throws XDocReportException
-     * @throws XDocConverterException
-     * @throws IOException
-     */
-    void convert( Map<String, Object> contextMap, Options options, OutputStream out )
-        throws XDocReportException, XDocConverterException, IOException;
 
     /**
      * Returns mime mapping switch the kind of the report (odt, docx...).

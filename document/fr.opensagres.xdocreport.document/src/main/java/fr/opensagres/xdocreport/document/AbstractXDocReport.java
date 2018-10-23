@@ -39,10 +39,6 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import fr.opensagres.xdocreport.converter.ConverterRegistry;
-import fr.opensagres.xdocreport.converter.IConverter;
-import fr.opensagres.xdocreport.converter.Options;
-import fr.opensagres.xdocreport.converter.XDocConverterException;
 import fr.opensagres.xdocreport.core.XDocReportException;
 import fr.opensagres.xdocreport.core.io.IEntryOutputStreamProvider;
 import fr.opensagres.xdocreport.core.io.IEntryReaderProvider;
@@ -658,102 +654,6 @@ public abstract class AbstractXDocReport
         }
     }
 
-    public IConverter getConverter( Options options )
-        throws XDocConverterException
-    {
-        return ConverterRegistry.getRegistry().findConverter( getKind(), options.getTo(), options.getVia() );
-    }
-
-    public void convert( Map<String, Object> contextMap, Options options, OutputStream out )
-        throws XDocReportException, XDocConverterException, IOException
-    {
-        convert( createContext( contextMap ), options, out );
-    }
-
-    public void convert( final IContext context, Options options, OutputStream out )
-        throws XDocReportException, XDocConverterException, IOException
-    {
-        // 1) Start process report generation
-        long startTime = -1;
-        if ( LOGGER.isLoggable( Level.FINE ) )
-        {
-            // Debug start process
-            startTime = System.currentTimeMillis();
-            LOGGER.fine( "Start convert report " );
-        }
-        XDocArchive outputArchive = null;
-        try
-        {
-            IConverter converter = getConverter( options );
-            // 2) Execute preprocessors to modify original XML Document
-            // (odt,
-            // docx..) only if preprocessing was not done.
-            doPreprocessorIfNeeded();
-
-            // 4) Copy original arhvive to returns
-            outputArchive = internalGetDocumentArchive().createCopy();
-
-            // 5) Loop for each entries (XML file from the zipped XML
-            // document (odt, docx...)
-            // to merge it with Java model from the context with template
-            // engine (freemarker, velocity).
-            processTemplateEngine( context, outputArchive );
-
-            if ( converter.canSupportEntries() )
-            {
-                converter.convert( outputArchive, out, options );
-            }
-            else
-            {
-                // Converter cannot supper input entries provider,
-                // rebuild a zip and set it as input stream.
-                converter.convert( XDocArchive.getInputStream( outputArchive ), out, options );
-            }
-
-            // 7) End process report generation
-            if ( LOGGER.isLoggable( Level.FINE ) )
-            {
-                LOGGER.fine( "End convert report done with " + ( System.currentTimeMillis() - startTime )
-                    + "(ms)." );
-            }
-        }
-        catch ( Throwable e )
-        {
-            // Error while report generation
-            if ( LOGGER.isLoggable( Level.FINE ) )
-            {
-                LOGGER.fine( "End convert report with error done with " + ( System.currentTimeMillis() - startTime )
-                    + "(ms)." );
-                LOGGER.throwing( getClass().getName(), "convert", e );
-            }
-            if ( e instanceof RuntimeException )
-            {
-                throw (RuntimeException) e;
-            }
-            if ( e instanceof IOException )
-            {
-                throw (IOException) e;
-            }
-            if ( e instanceof XDocReportException )
-            {
-                throw (XDocReportException) e;
-            }
-            if ( e instanceof XDocConverterException )
-            {
-                throw (XDocConverterException) e;
-            }
-            throw new XDocConverterException( e );
-
-        }
-        finally
-        {
-            if ( outputArchive != null )
-            {
-                outputArchive.dispose();
-            }
-            outputArchive = null;
-        }
-    }
 
     private void processTemplateEngine( final IContext context, XDocArchive outputArchive )
         throws XDocReportException, IOException
@@ -1040,7 +940,7 @@ public abstract class AbstractXDocReport
     {
         if ( documentIn == null )
         {
-            throw new XDocConverterException( "Dump cannot be done. Dump fo the report input stream cannot be null." );
+            throw new XDocReportException( "Dump cannot be done. Dump fo the report input stream cannot be null." );
         }
         getDumper( options ).dump( this, documentIn, context, options, out );
 

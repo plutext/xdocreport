@@ -1,2 +1,0 @@
-Import-Package: *,org.codehaus.jackson.jaxrs
-Bundle-Activator: fr.opensagres.xdocreport.remoting.resources.services.server.jaxrs.internal.Activator

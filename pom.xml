@@ -43,6 +43,8 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.1</version>
+                <!--
 				<configuration>
 					<archive>
 						<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
@@ -52,7 +54,9 @@
 						</manifest>
 					</archive>
 				</configuration>
-			</plugin>
+                -->
+            </plugin> 
+<!--            
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
@@ -67,7 +71,6 @@
 					</execution>
 				</executions>
 				<configuration>
-					<!-- <unpackBundle>true</unpackBundle> -->
 					<instructions>
 						<_include>TEMPLATE.MF</_include>
 						<_snapshot>${osgi-version-qualifier}</_snapshot>
@@ -77,6 +80,7 @@
 					</instructions>
 				</configuration>
 			</plugin>
+            -->
 			<plugin>
 				<artifactId>maven-release-plugin</artifactId>
 				<configuration>
@@ -171,11 +175,12 @@
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>2.14</version>
 				</plugin>
-				<plugin>
+<!--                
+				<plugin>                    
 					<groupId>org.apache.felix</groupId>
 					<artifactId>maven-bundle-plugin</artifactId>
 					<version>2.3.7</version>
-				</plugin>
+                </plugin> -->
 				<plugin>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.1</version>
@@ -247,16 +252,11 @@
 	  <tag>HEAD</tag>
   </scm>
 	<modules>
-		<module>thirdparties-extension</module>
 		<module>core</module>
-		<module>tools</module>
 		<module>document</module>
 		<module>template</module>
-		<module>converter</module>
 		<module>integrationtests</module>
 		<module>sandbox</module>
-		<module>remoting</module>
-		<module>gae</module>
 		<module>uberjar</module>
 	</modules>
 	<dependencies>
@@ -294,6 +294,7 @@
 			</notifier>
 		</notifiers>
 	</ciManagement>
+<!--    
 	<profiles>
 		<profile>
 			<activation>
@@ -311,7 +312,6 @@
 							<groupId>org.apache.felix</groupId>
 							<artifactId>maven-bundle-plugin</artifactId>
 							<configuration>
-								<!-- PDE does not honour custom manifest location -->
 								<manifestLocation>META-INF</manifestLocation>
 							</configuration>
 						</plugin>
@@ -320,4 +320,5 @@
 			</build>
 		</profile>
 	</profiles>
+    -->
 </project>

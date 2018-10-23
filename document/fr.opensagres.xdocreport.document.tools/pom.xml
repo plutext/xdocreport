@@ -43,11 +43,6 @@
 		</dependency>
 		<dependency>
 			<groupId>fr.opensagres.xdocreport</groupId>
-			<artifactId>fr.opensagres.xdocreport.document.odt</artifactId>
-			<version>2.0.2-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>fr.opensagres.xdocreport</groupId>
 			<artifactId>fr.opensagres.xdocreport.template.freemarker</artifactId>
 			<version>2.0.2-SNAPSHOT</version>
 		</dependency>
@@ -56,24 +51,13 @@
 			<artifactId>fr.opensagres.xdocreport.template.velocity</artifactId>
 			<version>2.0.2-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>fr.opensagres.xdocreport</groupId>
+			<artifactId>fr.opensagres.xdocreport.template</artifactId>
+			<version>2.0.2-SNAPSHOT</version>
+			
+        </dependency> <!--<scope>test</scope> -->
 
-		<dependency>
-			<groupId>fr.opensagres.xdocreport</groupId>
-			<artifactId>fr.opensagres.xdocreport.remoting.resources.services.client</artifactId>
-			<version>2.0.2-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>fr.opensagres.xdocreport</groupId>
-			<artifactId>fr.opensagres.xdocreport.remoting.resources.services.server</artifactId>
-			<version>2.0.2-SNAPSHOT</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>fr.opensagres.xdocreport</groupId>
-			<artifactId>fr.opensagres.xdocreport.openoffice.macro</artifactId>
-			<type>oxt</type>
-			<version>2.0.2-SNAPSHOT</version>
-		</dependency>
 
 		<!-- Use JAX-WS CXF implementation -->
 		<dependency>

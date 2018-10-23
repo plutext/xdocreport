@@ -20,14 +20,6 @@
 		</plugins>
 	</build>
 	<modules>
-		<module>fr.opensagres.xdocreport.remoting.ws</module>
-		<module>fr.opensagres.xdocreport.remoting.rest</module>
-		<module>fr.opensagres.xdocreport.remoting.shared</module>
-		<module>fr.opensagres.xdocreport.remoting.api</module>
-		<module>fr.opensagres.xdocreport.remoting.javaclient</module>
-		<module>fr.opensagres.xdocreport.converter.fop</module>
-		<module>fr.opensagres.xdocreport.converter.fop.docx</module>
-		<module>fr.opensagres.xdocreport.converter.fop.odt</module>
 
 	</modules>
 </project>
